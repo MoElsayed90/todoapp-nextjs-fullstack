@@ -11,6 +11,7 @@ export const todoFormSchema = z.object({
   body: z.string().max(80, {
     message: "short descrpition must not be longer than 80 characters.",
   }),
+  completed : z.boolean()
 });
 export type todoFormValues = z.infer<typeof todoFormSchema>;
 export const defaultValues: Partial<todoFormValues> = {

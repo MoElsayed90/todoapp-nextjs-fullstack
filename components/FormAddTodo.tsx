@@ -27,9 +27,15 @@ import { useForm } from "react-hook-form";
 import { defaultValues, todoFormSchema, todoFormValues } from "@/schema";
 import { createTodoAction } from "@/actions/todo.actions";
 import { title } from "process";
+import { Checkbox } from "./ui/checkbox";
 
 
 const FormAddTodo = () => {
+  const defaultValues: Partial<todoFormValues>={
+    title:"",
+    body:"",
+    completed:false 
+  }
   const form = useForm<todoFormValues>({
     resolver: zodResolver(todoFormSchema),
     defaultValues,
@@ -37,7 +43,7 @@ const FormAddTodo = () => {
   })
   const onSubmit = async (data: todoFormValues) => {
     console.log(data)
-    await createTodoAction({title:data.title , body:data.body})
+    await createTodoAction({title:data.title , body:data.body , completed:data.completed})
   }
   return (
     <Dialog>
@@ -82,6 +88,19 @@ const FormAddTodo = () => {
                         className="resize-none"
                         {...field}
                       />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+               <FormField
+                control={form.control}
+                name="completed"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>Completed</FormLabel>
+                    <FormControl>
+                      <Checkbox checked={field.value} onCheckedChange={field.onChange} {...field} />
                     </FormControl>
                     <FormMessage />
                   </FormItem>
