@@ -5,28 +5,28 @@ import {faker} from '@faker-js/faker'
 const prisma = new PrismaClient()
 
 async function main() {
-  await prisma.todo.createMany({
-    //* Generate fake data for Todo Model *//
-    data: Array.from({length:25},()=>{
-      return{
-        title:faker.lorem.words({min:3, max:7}),
+  // await prisma.todo.createMany({
+  //   //* Generate fake data for Todo Model *//
+  //   data: Array.from({length:25},()=>{
+  //     return{
+  //       title:faker.lorem.words({min:3, max:7}),
         
-        }
-        })
-      //* Generate fake data for User Model *//
-    // data: Array.from({length:25},()=>{
-    //   return{
-    //     email:faker.internet.email(),
-    //     name:faker.internet.userName(),
-    //     address:{
-    //       street:faker.location.street(),
-    //       city:faker.location.city(),
-    //       state:faker.location.state(),
-    //       zip:faker.location.zipCode()
-    //     }
-    //   }
-    // })
-  })
+  //       }
+  //       })
+  //     //* Generate fake data for User Model *//
+  //   // data: Array.from({length:25},()=>{
+  //   //   return{
+  //   //     email:faker.internet.email(),
+  //   //     name:faker.internet.userName(),
+  //   //     address:{
+  //   //       street:faker.location.street(),
+  //   //       city:faker.location.city(),
+  //   //       state:faker.location.state(),
+  //   //       zip:faker.location.zipCode()
+  //   //     }
+  //   //   }
+  //   // })
+  // })
 }
 
 main()
