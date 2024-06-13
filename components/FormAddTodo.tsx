@@ -32,7 +32,7 @@ import { useState } from "react";
 import Spinner from "./Spinner";
 
 
-const FormAddTodo = () => {
+const FormAddTodo = ({userId}:{userId:string | null}) => {
   const [open, setOpen] = useState(false)
   const [loading, setLoading] = useState(false)
   const defaultValues: Partial<todoFormValues> = {
@@ -47,7 +47,7 @@ const FormAddTodo = () => {
   })
   const onSubmit = async ({ title, body, completed }: todoFormValues) => {
     setLoading(true)
-    await createTodoAction({ title, body, completed })
+    await createTodoAction({ title, body, completed , userId })
     setLoading(false)
     setOpen(false)
   }
@@ -106,7 +106,7 @@ const FormAddTodo = () => {
                   <FormItem>
                     <div className="space-x-2 flex items-center">
                     <FormControl>
-                      <Checkbox checked={field.value} onCheckedChange={field.onChange} {...field} />
+                      <Checkbox checked={field.value} onCheckedChange={field.onChange}/>
                     </FormControl>
                     <FormLabel>Completed</FormLabel>
                   </div>
