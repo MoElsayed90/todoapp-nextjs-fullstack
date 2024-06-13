@@ -2,7 +2,7 @@ import { title } from 'process';
 'use server'
 import { ITodo } from "@/interfaces";
 import { todoFormValues } from "@/schema";
-import { PrismaClient } from "@prisma/client";
+import { PrismaClient } from '@prisma/client';
 import { revalidatePath } from "next/cache";
 
 const prisma = new PrismaClient();
