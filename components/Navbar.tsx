@@ -6,10 +6,14 @@ const Navbar = () => {
     <div className="container flex items-center justify-between">
       <ModeToggle />
       <SignedOut>
-        <SignInButton />
+        <span className="btn">
+          <SignInButton />
+        </span>
       </SignedOut>
       <SignedIn>
-        <UserButton />
+        <span className="btn">
+          <UserButton />
+        </span>
       </SignedIn>
     </div>
   )

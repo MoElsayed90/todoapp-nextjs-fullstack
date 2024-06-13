@@ -4,5 +4,5 @@ export interface ITodo {
   title: string;
   body: string | null ;
   completed:boolean;
-  createdAt?:Date;
+  createdAt?:Date | undefined;
 }

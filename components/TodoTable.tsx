@@ -20,11 +20,12 @@ export function TodoTable({ todos }: { todos: ITodo[] }) {
           <TableHead className="w-[100px]">ID</TableHead>
           <TableHead>title</TableHead>
           <TableHead>complete</TableHead>
+          <TableHead>createdAt</TableHead>
           <TableHead className="text-right">Actions</TableHead>
         </TableRow>
       </TableHeader>
       <TableBody>
-        {todos?.map((todo) => (
+        {todos.map((todo) => (
           <TableRow key={todo?.id}>
             <TableCell className="font-medium">{todo?.id}</TableCell>
             <TableCell>{todo?.title}</TableCell>
@@ -42,6 +43,11 @@ export function TodoTable({ todos }: { todos: ITodo[] }) {
                 </Badge>
               )}
             </TableCell>
+            <TableCell>{todo?.createdAt? (
+    <span>{todo.createdAt.toLocaleString()}</span>
+  ) : (
+    <span>Unknown</span>
+  )}</TableCell>
             <TableCell className="flex items-center justify-end space-x-2">
               <TodosTableActions todo={todo} />
             </TableCell>
@@ -50,7 +56,7 @@ export function TodoTable({ todos }: { todos: ITodo[] }) {
       </TableBody>
       <TableFooter>
         <TableRow>
-          <TableCell colSpan={3}>Total</TableCell>
+          <TableCell colSpan={4}>Total</TableCell>
           <TableCell className="text-right">{!todos.length ? "You Dont't have any Todos" : todos.length}</TableCell>
         </TableRow>
       </TableFooter>

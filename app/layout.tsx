@@ -29,8 +29,10 @@ export default function RootLayout({
             enableSystem
             disableTransitionOnChange
           >
-            <Navbar/>
-            {children}
+            <Navbar />
+            <div className="flex items-center justify-center">
+              {children}
+            </div>
           </ThemeProvider>
         </body>
       </html>

@@ -53,7 +53,7 @@ const FormAddTodo = ({userId}:{userId:string | null}) => {
   }
   return (
     <Dialog open={open} onOpenChange={setOpen}>
-      <DialogTrigger asChild>
+      <DialogTrigger asChild className="ml-auto" >
         <Button>
           <Plus size={14} className="mr-2" />
           New Todo
@@ -61,9 +61,9 @@ const FormAddTodo = ({userId}:{userId:string | null}) => {
       </DialogTrigger>
       <DialogContent className="sm:max-w-[425px]">
         <DialogHeader>
-          <DialogTitle>Edit profile</DialogTitle>
-          <DialogDescription>
-            Make changes to your profile here. Click save when you&apos;re done.
+          <DialogTitle>Add Todo</DialogTitle>
+           <DialogDescription>
+            Make New todo . Click save when you&apos;re done.
           </DialogDescription>
         </DialogHeader>
         <div className=" py-4">
