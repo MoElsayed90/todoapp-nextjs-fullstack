@@ -1,6 +1,6 @@
 'use client'
 import { Button } from "@/components/ui/button";
-import { Plus } from "lucide-react";
+import { Pen, Plus } from "lucide-react";
 import {
   Dialog,
   DialogContent,
@@ -25,39 +25,36 @@ import { Textarea } from "@/components/ui/textarea";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { defaultValues, todoFormSchema, todoFormValues } from "@/schema";
-import { createTodoAction } from "@/actions/todo.actions";
-import { title } from "process";
+import { updateTodoAction } from "@/actions/todo.actions";
 import { Checkbox } from "./ui/checkbox";
 import { useState } from "react";
 import Spinner from "./Spinner";
+import { ITodo } from "@/interfaces";
 
 
-const FormAddTodo = () => {
+const FormEditTodo = ({todo}:{todo:ITodo}) => {
   const [open, setOpen] = useState(false)
   const [loading, setLoading] = useState(false)
   const defaultValues: Partial<todoFormValues> = {
-    title: "",
-    body: "",
-    completed: false
+    title: todo.title,
+    body: todo.body as string,
+    completed: todo.completed
   }
   const form = useForm<todoFormValues>({
     resolver: zodResolver(todoFormSchema),
     defaultValues,
     mode: "onChange",
   })
-  const onSubmit = async ({ title, body, completed }: todoFormValues) => {
+  const onSubmit = async (data: todoFormValues) => {
     setLoading(true)
-    await createTodoAction({ title, body, completed })
+    await updateTodoAction({id:todo.id ,title:data.title, body:data.body as string , completed:data.completed})
     setLoading(false)
     setOpen(false)
   }
   return (
     <Dialog open={open} onOpenChange={setOpen}>
       <DialogTrigger asChild>
-        <Button>
-          <Plus size={14} className="mr-2" />
-          New Todo
-        </Button>
+        <Button size={"icon"}><Pen size={16} /></Button>
       </DialogTrigger>
       <DialogContent className="sm:max-w-[425px]">
         <DialogHeader>
@@ -105,11 +102,11 @@ const FormAddTodo = () => {
                 render={({ field }) => (
                   <FormItem>
                     <div className="space-x-2 flex items-center">
-                    <FormControl>
-                      <Checkbox checked={field.value} onCheckedChange={field.onChange} {...field} />
-                    </FormControl>
-                    <FormLabel>Completed</FormLabel>
-                  </div>
+                      <FormControl>
+                        <Checkbox checked={field.value} onCheckedChange={field.onChange} {...field} />
+                      </FormControl>
+                      <FormLabel>Completed</FormLabel>
+                    </div>
                   </FormItem>
                 )}
               />
@@ -117,7 +114,7 @@ const FormAddTodo = () => {
                 {
                   loading ? (
                     <>
-                      <Spinner/> Saving
+                      <Spinner /> Saving
                     </>
                   ) : (
                     "Saving"
@@ -135,4 +132,4 @@ const FormAddTodo = () => {
 
 }
 
-export default FormAddTodo;
+export default FormEditTodo;

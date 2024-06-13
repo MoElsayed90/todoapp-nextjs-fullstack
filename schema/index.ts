@@ -17,4 +17,5 @@ export type todoFormValues = z.infer<typeof todoFormSchema>;
 export const defaultValues: Partial<todoFormValues> = {
   title: " Default Title.",
   body: "Default Description",
+  completed: false
 };
