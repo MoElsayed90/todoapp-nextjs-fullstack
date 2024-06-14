@@ -3,4 +3,4 @@ export const dynamic = 'force-dynamic'; // static by default, unless reading the
 export function GET(request: Request) {
   return new Response(`Hello from ${process.env.VERCEL_REGION}`);
 }
-export const runtime = 'Edge';
+export const runtime = 'edge';
