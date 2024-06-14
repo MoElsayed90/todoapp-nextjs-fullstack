@@ -70,7 +70,7 @@ const prisma = new PrismaClient();
  * @returns {Promise<Array<ITodo>>} - A promise that resolves to an array of todo items.
  * @throws {Error} - Throws an error if something goes wrong during the retrieval process.
  */
-export const getUserTodoListAction = async ({ userId }: { userId: string | null }): Promise<Array<ITodo>> => {
+export const getTodoListAction = async ({ userId }: { userId: string | null }): Promise<Array<ITodo>> => {
   try {
     return await prisma.todo.findMany({
       where: {
